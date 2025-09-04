@@ -1,0 +1,26 @@
+{
+  "name": "@snaphub/server",
+  "version": "1.0.0",
+  "description": "Server for SnapHub platform",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p .",
+    "start": "node ./dist/index.js",
+    "test": "node --test tests/**/*.test.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@hono/node-server": "^1.19.1",
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.12",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "author": "brojor",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
+}

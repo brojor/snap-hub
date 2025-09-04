@@ -1,0 +1,10 @@
+packages:
+  - packages/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+
+syncInjectedDepsAfterScripts:
+- build
+injectWorkspacePackages: true

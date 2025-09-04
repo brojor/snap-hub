@@ -1,0 +1,5 @@
+.agent-os
+.claude
+.cursor
+node_modules
+.env

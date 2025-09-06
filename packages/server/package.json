@@ -8,17 +8,25 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc -p .",
     "start": "node ./dist/index.js",
-    "test": "node --test tests/**/*.test.js"
+    "test": "vitest",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
     "@hono/node-server": "^1.19.1",
-    "hono": "^4.0.0"
+    "drizzle-orm": "^0.44.5",
+    "hono": "^4.0.0",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/node": "^20.19.12",
+    "@types/pg": "^8.15.5",
+    "drizzle-kit": "^0.31.4",
     "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4"
   },
   "author": "brojor",
   "license": "MIT",

@@ -43,40 +43,57 @@ services:
     networks:
       - snaphub-network
 
-  # server:
-  #   build: 
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: server
-  #   container_name: snaphub-server
-  #   depends_on:
-  #     minio-setup:
-  #       condition: service_completed_successfully
-  #   environment:
-  #     - NODE_ENV=development
-  #     - MINIO_ENDPOINT=minio
-  #     - MINIO_PORT=9000
-  #     - MINIO_ACCESS_KEY=${MINIO_ROOT_USER:-admin}
-  #     - MINIO_SECRET_KEY=${MINIO_ROOT_PASSWORD:-password123}
-  #     - MINIO_BUCKET=snaphub-test
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - snaphub-network
+  server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: server
+    container_name: snaphub-server
+    depends_on:
+      minio-setup:
+        condition: service_completed_successfully
+    environment:
+      - NODE_ENV=development
+      - MINIO_ENDPOINT=minio
+      - MINIO_PORT=9000
+      - MINIO_ACCESS_KEY=${MINIO_ROOT_USER:-admin}
+      - MINIO_SECRET_KEY=${MINIO_ROOT_PASSWORD:-password123}
+      - MINIO_BUCKET=snaphub-test
+    ports:
+      - "3000:3000"
+    networks:
+      - snaphub-network
 
-  # client:
-  #   build: 
-  #     context: .
-  #     dockerfile: Dockerfile
-  #     target: client
-  #   container_name: snaphub-client
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - snaphub-network
+  client:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: client
+    container_name: snaphub-client
+    ports:
+      - "8080:8080"
+    networks:
+      - snaphub-network
+    
+  postgres:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    networks:
+      - snaphub-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    environment:
+      POSTGRES_USER: snaphub
+      POSTGRES_DB: snaphub
+      POSTGRES_PASSWORD: snaphub
 
 volumes:
   minio_data:
+  postgres_data:
 
 networks:
   snaphub-network:

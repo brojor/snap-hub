@@ -87,8 +87,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
     environment:
-      POSTGRES_USER: snaphub
-      POSTGRES_DB: snaphub
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
       POSTGRES_PASSWORD: snaphub
 
 volumes:
